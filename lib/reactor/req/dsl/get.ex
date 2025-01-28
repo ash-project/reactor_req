@@ -3,7 +3,7 @@ defmodule Reactor.Req.Dsl.Get do
   A `req_get` DSL entity for the `Reactor.Req` DSL extension.
   """
 
-  alias Reactor.Dsl.WaitFor
+  alias Reactor.Dsl.{Argument, Guard, WaitFor, Where}
   alias Reactor.Req.Dsl.Options
 
   defstruct Options.struct_attrs()
@@ -20,10 +20,13 @@ defmodule Reactor.Req.Dsl.Get do
       """,
       target: __MODULE__,
       identifier: :name,
-      imports: [Reactor.Dsl.Argument],
+      imports: [Argument],
       args: [:name],
       recursive_as: :steps,
-      entities: [arguments: [WaitFor.__entity__()]],
+      entities: [
+        arguments: [WaitFor.__entity__()],
+        guards: [Guard.__entity__(), Where.__entity__()]
+      ],
       schema:
         Options.merge(
           name: [

@@ -9,13 +9,16 @@ defmodule Reactor.Req.Builder do
     arguments =
       req
       |> Map.from_struct()
-      |> Map.drop([:__identifier__, :arguments, :name])
+      |> Map.drop([:__identifier__, :arguments, :name, :guards])
       |> Enum.reject(&is_nil(elem(&1, 1)))
       |> Enum.map(fn
         {name, template} when is_template(template) ->
           %Argument{name: name, source: template}
       end)
 
-    Builder.add_step(reactor, req.name, {Step, fun: fun}, arguments, ref: :step_name)
+    Builder.add_step(reactor, req.name, {Step, fun: fun}, arguments,
+      guards: req.guards,
+      ref: :step_name
+    )
   end
 end
