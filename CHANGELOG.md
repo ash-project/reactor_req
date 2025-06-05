@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## [v0.1.4](https://github.com/ash-project/reactor_req/compare/v0.1.3...v0.1.4) (2025-06-05)
+
+
+
+
+### Improvements:
+
+* As of this commit `reactor_req` is MIT licensed. by James Harton
+
 ## [v0.1.3](https://harton.dev/james/reactor_req/compare/v0.1.2...v0.1.3) (2025-01-29)
 
 
