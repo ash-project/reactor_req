@@ -6,7 +6,7 @@ defmodule Reactor.Req.Dsl.NewTest do
     adapter: Req.Request,
     auth: {:basic, "marty:outatime"},
     aws_sigv4: [region: "hill-valley"],
-    base_url: "http://harton.dev/james/reactor_req",
+    base_url: "http://github.com/ash-project/reactor_req",
     body: "Roads. Where we're going we don't need roads",
     cache_dir: "priv/cache",
     cache: true,
@@ -39,7 +39,7 @@ defmodule Reactor.Req.Dsl.NewTest do
     retry_log_level: :warn,
     retry: false,
     unix_socket: "priv/pretend.sock",
-    url: Macro.escape(URI.new!("https://harton.dev/james/reactor_req"))
+    url: Macro.escape(URI.new!("https://github.com/ash-project/reactor_req"))
   ]
 
   defmodule AllOptionsReactor do

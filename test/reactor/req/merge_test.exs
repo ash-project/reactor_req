@@ -24,11 +24,11 @@ defmodule Reactor.Req.MergeTest do
   test "it merges requests together" do
     assert {:ok, req} =
              Reactor.run(MergeReactor, %{
-               url: "https://harton.dev/james/reactor_req",
+               url: "https://github.com/ash-project/reactor_req",
                auth: {:basic, "marty:mcfly"}
              })
 
-    assert req.url == URI.parse("https://harton.dev/james/reactor_req")
+    assert req.url == URI.parse("https://github.com/ash-project/reactor_req")
     assert req.options.auth == {:basic, "marty:mcfly"}
   end
 end

@@ -19,8 +19,8 @@ defmodule Reactor.Req.MixProject do
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
-      source_url: "https://harton.dev/james/reactor_req",
-      homepage_url: "https://harton.dev/james/reactor_req",
+      source_url: "https://github.com/ash-project/reactor_req",
+      homepage_url: "https://github.com/ash-project/reactor_req",
       start_permanent: Mix.env() == :prod,
       version: @version
     ]
@@ -37,17 +37,16 @@ defmodule Reactor.Req.MixProject do
     [
       name: :reactor_req,
       files: ~w[lib .formatter.exs mix.exs README* LICENSE* CHANGELOG* documentation],
-      licenses: ["HL3-FULL"],
+      licenses: ["MIT"],
       links: %{
-        "Source" => "https://harton.dev/james/reactor_req",
-        "GitHub" => "https://github.com/jimsynz/reactor_req",
-        "Changelog" => "https://harton.dev/james/reactor_req/src/branch/main/CHANGELOG.md",
+        "Source" => "https://github.com/ash-project/reactor_req",
+        "Changelog" => "https://github.com/ash-project/reactor_req/blob/main/CHANGELOG.md",
         "Sponsor" => "https://github.com/sponsors/jimsynz"
       },
       maintainers: [
         "James Harton <james@harton.nz>"
       ],
-      source_url: "https://harton.dev/james/reactor_req"
+      source_url: "https://github.com/ash-project/reactor_req"
     ]
   end
 
@@ -61,6 +60,7 @@ defmodule Reactor.Req.MixProject do
       {:ex_check, "~> 0.16", only: ~w[dev test]a, runtime: false},
       {:ex_doc, "~> 0.38", only: ~w[dev test]a, runtime: false},
       {:git_ops, "~> 2.6", only: ~w[dev test]a, runtime: false},
+      {:mix_audit, "~> 2.0", only: ~w[dev test]a, runtime: false},
       {:plug, "~> 1.16", only: ~w[dev test]a, runtime: false},
       {:igniter, "~> 0.6", optional: true},
       {:reactor, "~> 0.15"},
@@ -72,12 +72,7 @@ defmodule Reactor.Req.MixProject do
   defp aliases do
     [
       credo: "credo --strict",
-      docs: [
-        "spark.cheat_sheets",
-        "docs",
-        "spark.cheat_sheets_in_search",
-        "spark.replace_doc_links"
-      ],
+      docs: ["spark.cheat_sheets", "docs"],
       "spark.formatter": "spark.formatter --extensions Reactor.Req.Ext",
       "spark.cheat_sheets": "spark.cheat_sheets --extensions Reactor.Req",
       "spark.cheat_sheets_in_search": "spark.cheat_sheets_in_search --extensions Reactor.Req"
@@ -92,7 +87,7 @@ defmodule Reactor.Req.MixProject do
       filter_modules: ~r/^Elixir\.Reactor/,
       groups_for_extras: extra_documentation_groups(),
       main: "readme",
-      source_url_pattern: "https://harton.dev/james/reactor_req/src/branch/main/%{path}#L%{line}",
+      source_url_pattern: "https://github.com/ash-project/reactor_req/blob/main/%{path}#L%{line}",
       spark: [
         extension: [
           %{
