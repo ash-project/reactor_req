@@ -8,10 +8,20 @@ defmodule Reactor.Req.PostTest do
     use Reactor, extensions: [Reactor.Req]
 
     input :url
+    input :skip?
 
     req_post :request do
+      argument :skip?, input(:skip?)
       url input(:url)
       http_errors value(:raise)
+
+      guard fn %{skip?: skip}, _context ->
+        if skip do
+          {:halt, {:ok, nil}}
+        else
+          :cont
+        end
+      end
     end
   end
 
@@ -27,9 +37,15 @@ defmodule Reactor.Req.PostTest do
        end}
     )
 
-    assert {:ok, response} = Reactor.run(PostReactor, %{url: "http://localhost:#{port}/stub"})
+    assert {:ok, response} =
+             Reactor.run(PostReactor, %{url: "http://localhost:#{port}/stub", skip?: false})
 
     assert response.status == 200
     assert response.body == "POST"
+  end
+
+  test "it can take arguments", %{test: test} do
+    assert {:ok, nil} =
+             Reactor.run(PostReactor, %{url: "http://localhost:1337/stub", skip?: true})
   end
 end

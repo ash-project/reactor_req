@@ -5,6 +5,8 @@ defmodule Reactor.Req.Step do
 
   use Reactor.Step
 
+  alias Reactor.Req.Dsl.Options
+
   @doc false
   @impl true
   @spec run(Reactor.inputs(), Reactor.context(), keyword) :: {:ok | :error, any}
@@ -12,9 +14,12 @@ defmodule Reactor.Req.Step do
     fun =
       Keyword.fetch!(options, :fun)
 
+    req_options = Options.struct_attrs() |> Keyword.keys()
+
     arguments =
       arguments
       |> Enum.reject(&is_nil(elem(&1, 1)))
+      |> Enum.filter(fn {key, _value} -> key in req_options end)
 
     do_run(arguments, fun)
   end
