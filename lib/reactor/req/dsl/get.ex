@@ -24,7 +24,7 @@ defmodule Reactor.Req.Dsl.Get do
       args: [:name],
       recursive_as: :steps,
       entities: [
-        arguments: [WaitFor.__entity__()],
+        arguments: [Argument.__entity__(), WaitFor.__entity__()],
         guards: [Guard.__entity__(), Where.__entity__()]
       ],
       schema:

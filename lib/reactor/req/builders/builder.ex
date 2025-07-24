@@ -16,7 +16,9 @@ defmodule Reactor.Req.Builder do
           %Argument{name: name, source: template}
       end)
 
-    Builder.add_step(reactor, req.name, {Step, fun: fun}, arguments,
+    all_arguments = arguments ++ req.arguments
+
+    Builder.add_step(reactor, req.name, {Step, fun: fun}, all_arguments,
       guards: req.guards,
       ref: :step_name
     )
