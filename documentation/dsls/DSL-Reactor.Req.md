@@ -20,6 +20,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_delete-argument)
  * [wait_for](#reactor-req_delete-wait_for)
  * [guard](#reactor-req_delete-guard)
  * [where](#reactor-req_delete-where)
@@ -76,6 +77,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_delete-unix_socket){: #reactor-req_delete-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_delete-url){: #reactor-req_delete-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_delete.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_delete-argument-name){: #reactor-req_delete-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_delete-argument-source){: #reactor-req_delete-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_delete-argument-description){: #reactor-req_delete-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_delete-argument-transform){: #reactor-req_delete-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_delete.wait_for
 ```elixir
@@ -233,6 +306,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_get-argument)
  * [wait_for](#reactor-req_get-wait_for)
  * [guard](#reactor-req_get-guard)
  * [where](#reactor-req_get-where)
@@ -289,6 +363,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_get-unix_socket){: #reactor-req_get-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_get-url){: #reactor-req_get-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_get.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_get-argument-name){: #reactor-req_get-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_get-argument-source){: #reactor-req_get-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_get-argument-description){: #reactor-req_get-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_get-argument-transform){: #reactor-req_get-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_get.wait_for
 ```elixir
@@ -446,6 +592,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_head-argument)
  * [wait_for](#reactor-req_head-wait_for)
  * [guard](#reactor-req_head-guard)
  * [where](#reactor-req_head-where)
@@ -502,6 +649,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_head-unix_socket){: #reactor-req_head-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_head-url){: #reactor-req_head-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_head.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_head-argument-name){: #reactor-req_head-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_head-argument-source){: #reactor-req_head-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_head-argument-description){: #reactor-req_head-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_head-argument-transform){: #reactor-req_head-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_head.wait_for
 ```elixir
@@ -659,6 +878,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_merge-argument)
  * [wait_for](#reactor-req_merge-wait_for)
  * [guard](#reactor-req_merge-guard)
  * [where](#reactor-req_merge-where)
@@ -715,6 +935,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_merge-unix_socket){: #reactor-req_merge-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_merge-url){: #reactor-req_merge-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_merge.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_merge-argument-name){: #reactor-req_merge-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_merge-argument-source){: #reactor-req_merge-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_merge-argument-description){: #reactor-req_merge-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_merge-argument-transform){: #reactor-req_merge-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_merge.wait_for
 ```elixir
@@ -872,6 +1164,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_new-argument)
  * [wait_for](#reactor-req_new-wait_for)
  * [guard](#reactor-req_new-guard)
  * [where](#reactor-req_new-where)
@@ -928,6 +1221,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_new-unix_socket){: #reactor-req_new-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_new-url){: #reactor-req_new-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_new.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_new-argument-name){: #reactor-req_new-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_new-argument-source){: #reactor-req_new-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_new-argument-description){: #reactor-req_new-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_new-argument-transform){: #reactor-req_new-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_new.wait_for
 ```elixir
@@ -1085,6 +1450,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_patch-argument)
  * [wait_for](#reactor-req_patch-wait_for)
  * [guard](#reactor-req_patch-guard)
  * [where](#reactor-req_patch-where)
@@ -1141,6 +1507,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_patch-unix_socket){: #reactor-req_patch-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_patch-url){: #reactor-req_patch-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_patch.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_patch-argument-name){: #reactor-req_patch-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_patch-argument-source){: #reactor-req_patch-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_patch-argument-description){: #reactor-req_patch-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_patch-argument-transform){: #reactor-req_patch-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_patch.wait_for
 ```elixir
@@ -1298,6 +1736,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_post-argument)
  * [wait_for](#reactor-req_post-wait_for)
  * [guard](#reactor-req_post-guard)
  * [where](#reactor-req_post-where)
@@ -1354,6 +1793,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_post-unix_socket){: #reactor-req_post-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_post-url){: #reactor-req_post-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_post.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_post-argument-name){: #reactor-req_post-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_post-argument-source){: #reactor-req_post-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_post-argument-description){: #reactor-req_post-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_post-argument-transform){: #reactor-req_post-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_post.wait_for
 ```elixir
@@ -1511,6 +2022,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_put-argument)
  * [wait_for](#reactor-req_put-wait_for)
  * [guard](#reactor-req_put-guard)
  * [where](#reactor-req_put-where)
@@ -1567,6 +2079,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_put-unix_socket){: #reactor-req_put-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_put-url){: #reactor-req_put-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_put.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_put-argument-name){: #reactor-req_put-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_put-argument-source){: #reactor-req_put-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_put-argument-description){: #reactor-req_put-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_put-argument-transform){: #reactor-req_put-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_put.wait_for
 ```elixir
@@ -1724,6 +2308,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_request-argument)
  * [wait_for](#reactor-req_request-wait_for)
  * [guard](#reactor-req_request-guard)
  * [where](#reactor-req_request-where)
@@ -1780,6 +2365,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_request-unix_socket){: #reactor-req_request-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_request-url){: #reactor-req_request-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_request.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_request-argument-name){: #reactor-req_request-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_request-argument-source){: #reactor-req_request-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_request-argument-description){: #reactor-req_request-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_request-argument-transform){: #reactor-req_request-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_request.wait_for
 ```elixir
@@ -1937,6 +2594,7 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 
 
 ### Nested DSLs
+ * [argument](#reactor-req_run-argument)
  * [wait_for](#reactor-req_run-wait_for)
  * [guard](#reactor-req_run-guard)
  * [where](#reactor-req_run-where)
@@ -1993,6 +2651,78 @@ Note that Reactor doesn't validate any options - it simply passes them to the un
 | [`unix_socket`](#reactor-req_run-unix_socket){: #reactor-req_run-unix_socket } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | If set, connect through the given UNIX domain socket |
 | [`url`](#reactor-req_run-url){: #reactor-req_run-url } | `nil \| Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | The request URL |
 
+
+### reactor.req_run.argument
+```elixir
+argument name, source \\ nil
+```
+
+
+Specifies an argument to a Reactor step.
+
+Each argument is a value which is either the result of another step, or an input value.
+
+Individual arguments can be transformed with an arbitrary function before
+being passed to any steps.
+
+
+
+
+### Examples
+```
+argument :name, input(:name)
+
+```
+
+```
+argument :year, input(:date, [:year])
+
+```
+
+```
+argument :user, result(:create_user)
+
+```
+
+```
+argument :user_id, result(:create_user) do
+  transform & &1.id
+end
+
+```
+
+```
+argument :user_id, result(:create_user, [:id])
+
+```
+
+```
+argument :three, value(3)
+
+```
+
+
+
+### Arguments
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`name`](#reactor-req_run-argument-name){: #reactor-req_run-argument-name .spark-required} | `atom` |  | The name of the argument which will be used as the key in the `arguments` map passed to the implementation. |
+| [`source`](#reactor-req_run-argument-source){: #reactor-req_run-argument-source .spark-required} | `Reactor.Template.Element \| Reactor.Template.Input \| Reactor.Template.Result \| Reactor.Template.Value` |  | What to use as the source of the argument. See `Reactor.Dsl.Argument` for more information. |
+### Options
+
+| Name | Type | Default | Docs |
+|------|------|---------|------|
+| [`description`](#reactor-req_run-argument-description){: #reactor-req_run-argument-description } | `String.t \| nil` |  | An optional description for the argument. |
+| [`transform`](#reactor-req_run-argument-transform){: #reactor-req_run-argument-transform } | `(any -> any) \| module \| nil` |  | An optional transformation function which can be used to modify the argument before it is passed to the step. |
+
+
+
+
+
+### Introspection
+
+Target: `Reactor.Dsl.Argument`
 
 ### reactor.req_run.wait_for
 ```elixir
