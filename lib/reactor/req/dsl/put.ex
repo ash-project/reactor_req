@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.Put do
   @moduledoc """
   A `req_put` DSL entity for the `Reactor.Req` DSL extension.

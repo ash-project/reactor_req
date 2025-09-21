@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton, Zach Daniel and Rodolfo Torres
+#
+# SPDX-License-Identifier: MIT
+
 import Config
 
 config :spark, formatter: [remove_parens?: true]

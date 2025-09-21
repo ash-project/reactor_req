@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.Patch do
   @moduledoc """
   A `req_patch` DSL entity for the `Reactor.Req` DSL extension.

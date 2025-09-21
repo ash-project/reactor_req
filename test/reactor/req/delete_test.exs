@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.DeleteTest do
   @moduledoc false
   use ExUnit.Case, async: true

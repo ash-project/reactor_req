@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 James Harton, Zach Daniel and Rodolfo Torres
+
+SPDX-License-Identifier: MIT
+-->
+
 <img src="https://github.com/ash-project/reactor/blob/main/logos/reactor-logo-light-small.png?raw=true#gh-light-mode-only" alt="Logo Light" width="250">
 <img src="https://github.com/ash-project/reactor/blob/main/logos/reactor-logo-dark-small.png?raw=true#gh-dark-mode-only" alt="Logo Dark" width="250">
 
@@ -6,6 +12,7 @@
 [![Build Status](https://github.com/ash-project/reactor_req/actions/workflows/elixir.yml/badge.svg)](https://github.com/ash-project/reactor/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Hex version badge](https://img.shields.io/hexpm/v/reactor_req.svg)](https://hex.pm/packages/reactor_req)
+[![REUSE status](https://api.reuse.software/badge/github.com/ash-project/reactor_req)](https://api.reuse.software/info/github.com/ash-project/reactor_req)
 
 A [Reactor](https://github.com/ash-project/reactor) extension that provides steps for working with HTTP requests via [Req](https://github.com/wojtekmach/req).
 

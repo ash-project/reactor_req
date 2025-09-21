@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Support.HttpServer do
   @moduledoc false
   use Plug.Builder, init_mode: :runtime, copy_opts_to_assign: :opts

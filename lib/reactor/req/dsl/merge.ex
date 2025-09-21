@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.Merge do
   @moduledoc """
   The `req_merge` DSL entity for the `Reactor.Req` DSL extension.
