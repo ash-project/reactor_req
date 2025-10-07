@@ -1,0 +1,350 @@
+# Reactor.Req Cheatsheet
+
+{: .col-2}
+
+## Getting Started
+
+### Installation
+
+Add to your `mix.exs`:
+
+```elixir
+def deps do
+  [
+    {:reactor_req, "~> 0.1.4"}
+  ]
+end
+```
+
+### Basic Usage
+
+```elixir
+defmodule MyReactor do
+  use Reactor, extensions: [Reactor.Req]
+  
+  input :url
+  
+  req_get :fetch do
+    url input(:url)
+  end
+end
+```
+
+## HTTP Method Steps
+
+### GET Request
+
+```elixir
+req_get :get_data do
+  url value("https://api.github.com/users/octocat")
+  headers value([accept: "application/json"])
+  http_errors value(:raise)
+end
+```
+
+### POST Request
+
+```elixir
+req_post :create_user do
+  url value("https://api.example.com/users")
+  json value(%{name: "Marty", email: "marty@example.com"})
+  headers value([content_type: "application/json"])
+end
+```
+
+### PUT Request
+
+```elixir
+req_put :update_user do
+  url value("https://api.example.com/users/123")
+  json input(:user_data)
+end
+```
+
+### PATCH Request
+
+```elixir
+req_patch :partial_update do
+  url result(:build_url)
+  json value(%{status: "active"})
+  headers value([authorization: "Bearer token123"])
+end
+```
+
+### DELETE Request
+
+```elixir
+req_delete :remove_user do
+  url result(:user_url)
+  headers value([authorization: input(:auth_token)])
+end
+```
+
+### HEAD Request
+
+```elixir
+req_head :check_exists do
+  url value("https://api.example.com/health")
+  receive_timeout value(5000)
+end
+```
+
+## Request Building Steps
+
+### Create New Request
+
+```elixir
+req_new :base_request do
+  base_url value("https://api.example.com")
+  headers value([
+    user_agent: "MyApp/1.0",
+    accept: "application/json"
+  ])
+  auth value({:bearer, "secret_token"})
+end
+```
+
+### Merge Request Options
+
+```elixir
+req_merge :enhanced_request do
+  request result(:base_request)
+  headers value([content_type: "application/json"])
+  max_retries value(3)
+end
+```
+
+### Generic Request
+
+```elixir
+req_request :custom_request do
+  method value(:options)
+  url value("https://api.example.com/endpoint")
+  headers value([origin: "https://example.com"])
+end
+```
+
+### Run Pre-built Request
+
+```elixir
+req_run :execute do
+  request result(:enhanced_request)
+  url value("https://api.example.com/data")
+end
+```
+
+## Common Options
+
+### Authentication
+
+```elixir
+# Basic auth
+req_get :secure_get do
+  url value("https://api.example.com/protected")
+  auth value({:basic, "user:password"})
+end
+
+# Bearer token
+req_post :api_call do
+  url value("https://api.example.com/data")
+  auth value({:bearer, "jwt_token_here"})
+end
+```
+
+### Request Body Formats
+
+```elixir
+# JSON body
+req_post :json_request do
+  url value("https://api.example.com/users")
+  json value(%{name: "Doc", profession: "Scientist"})
+end
+
+# Form data
+req_post :form_request do
+  url value("https://api.example.com/submit")
+  form value([name: "Marty", year: "1985"])
+end
+
+# Multipart form
+req_post :upload do
+  url value("https://api.example.com/upload")
+  form_multipart value([
+    file: {:file, "path/to/file.txt"},
+    description: "Time travel documentation"
+  ])
+end
+
+# Raw body
+req_post :raw_data do
+  url value("https://api.example.com/data")
+  body value("custom data format")
+  headers value([content_type: "application/octet-stream"])
+end
+```
+
+### Query Parameters
+
+```elixir
+req_get :search do
+  url value("https://api.github.com/search/repositories")
+  params value([
+    q: "reactor language:elixir",
+    sort: "stars",
+    order: "desc"
+  ])
+end
+```
+
+### Path Parameters
+
+```elixir
+req_get :user_repos do
+  url value("https://api.github.com/users/{owner}/repos")
+  path_params value(%{owner: "ash-project"})
+  path_params_style value(:colon)  # default
+end
+```
+
+## Advanced Features
+
+### Error Handling
+
+```elixir
+req_get :might_fail do
+  url value("https://api.example.com/flaky")
+  http_errors value(:raise)  # Raise on 4xx/5xx
+  # or
+  http_errors value(:return) # Return error responses
+end
+```
+
+### Retries and Timeouts
+
+```elixir
+req_get :resilient_request do
+  url value("https://api.example.com/data")
+  max_retries value(5)
+  retry_delay value(1000)  # 1 second
+  retry_log_level value(:info)
+  receive_timeout value(30_000)  # 30 seconds
+  pool_timeout value(10_000)     # 10 seconds
+end
+```
+
+### Caching
+
+```elixir
+req_get :cached_request do
+  url value("https://api.example.com/slow-data")
+  cache value(true)
+  cache_dir value("priv/http_cache")
+end
+```
+
+### Custom Adapters and Pools
+
+```elixir
+req_get :custom_pool do
+  url value("https://api.example.com/data")
+  finch value(MyApp.HTTPPool)
+  connect_options value([
+    timeout: 30_000,
+    protocols: [:http2]
+  ])
+end
+```
+
+### Response Processing
+
+```elixir
+req_get :stream_response do
+  url value("https://api.example.com/large-file")
+  into value(File.stream!("downloaded_file.json"))
+  decode_body value(false)
+end
+```
+
+## Reactive Patterns
+
+### Chaining Requests
+
+```elixir
+defmodule ChainedRequests do
+  use Reactor, extensions: [Reactor.Req]
+  
+  input :username
+  
+  req_get :get_user do
+    url value("https://api.github.com/users/{username}")
+    path_params value(%{username: input(:username)})
+  end
+  
+  req_get :get_repos do
+    url result(:get_user, [:body, "repos_url"])
+    depends_on result(:get_user)
+  end
+end
+```
+
+### Conditional Requests
+
+```elixir
+req_get :conditional do
+  url value("https://api.example.com/data")
+  
+  where result(:should_fetch, &(&1 == true))
+end
+```
+
+### Dynamic URLs
+
+```elixir
+step :build_api_url do
+  argument :endpoint, input(:endpoint)
+  argument :version, input(:api_version, default: "v1")
+  
+  run fn args ->
+    {:ok, "https://api.example.com/#{args.version}/#{args.endpoint}"}
+  end
+end
+
+req_get :dynamic_request do
+  url result(:build_api_url)
+  headers value([accept: "application/json"])
+end
+```
+
+### Error Recovery
+
+```elixir
+req_get :primary_api do
+  url value("https://primary-api.example.com/data")
+  http_errors value(:return)
+end
+
+req_get :fallback_api do
+  url value("https://backup-api.example.com/data")
+  
+  where result(:primary_api, fn response ->
+    response.status >= 400
+  end)
+end
+
+step :select_response do
+  argument :primary, result(:primary_api)
+  argument :fallback, result(:fallback_api)
+  
+  run fn args ->
+    if args.primary.status < 400 do
+      {:ok, args.primary}
+    else
+      {:ok, args.fallback}
+    end
+  end
+end
+```
+
+
+
+{: .col-2}
