@@ -1,6 +1,9 @@
 # Used by "mix format"
 spark_locals_without_parens = [
   adapter: 1,
+  argument: 1,
+  argument: 2,
+  argument: 3,
   auth: 1,
   aws_sigv4: 1,
   base_url: 1,
@@ -60,6 +63,8 @@ spark_locals_without_parens = [
   retry: 1,
   retry_delay: 1,
   retry_log_level: 1,
+  source: 1,
+  transform: 1,
   unix_socket: 1,
   url: 1,
   wait_for: 1,
