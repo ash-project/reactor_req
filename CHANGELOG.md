@@ -5,6 +5,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## [v0.1.6](https://github.com/ash-project/reactor_req/compare/v0.1.5...v0.1.6) (2025-10-07)
+
+
+
+
+### Bug Fixes:
+
+* we haven't written any usage rules yet :sob: by James Harton
+
 ## [v0.1.5](https://github.com/ash-project/reactor_req/compare/v0.1.4...v0.1.5) (2025-07-29)
 
 
