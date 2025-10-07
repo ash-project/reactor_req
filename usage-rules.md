@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 James Harton, Zach Daniel and Rodolfo Torres
+
+SPDX-License-Identifier: MIT
+-->
+
 # Reactor.Req Usage Rules for AI Coding Agents
 
 This document provides essential guidelines for AI coding agents when working with the Reactor.Req library.

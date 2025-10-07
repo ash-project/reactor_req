@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.Delete do
   @moduledoc """
   A `req_delete` DSL entity for the `Reactor.Req` DSL extension.

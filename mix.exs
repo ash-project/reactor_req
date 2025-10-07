@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton, Zach Daniel and Rodolfo Torres
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.MixProject do
   @moduledoc """
   A Reactor extension which provides steps for working with `Req`.
@@ -41,7 +45,8 @@ defmodule Reactor.Req.MixProject do
       links: %{
         "Source" => "https://github.com/ash-project/reactor_req",
         "Changelog" => "https://github.com/ash-project/reactor_req/blob/main/CHANGELOG.md",
-        "Sponsor" => "https://github.com/sponsors/jimsynz"
+        "Sponsor" => "https://github.com/sponsors/jimsynz",
+        "REUSE Compliance" => "https://api.reuse.software/info/github.com/ash-project/reactor"
       },
       maintainers: [
         "James Harton <james@harton.nz>"

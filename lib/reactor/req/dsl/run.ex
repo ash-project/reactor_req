@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.Run do
   @moduledoc """
   A `req_run` DSL entity for the `Reactor.Req` DSL extension.

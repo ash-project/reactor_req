@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Builder do
   @moduledoc "Common builder for all DSL entities"
   import Reactor.Template, only: :macros

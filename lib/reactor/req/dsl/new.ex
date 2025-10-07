@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 James Harton
+#
+# SPDX-License-Identifier: MIT
+
 defmodule Reactor.Req.Dsl.New do
   @moduledoc """
   The `req_new` DSL entity for the `Reactor.Req` DSL extension.
