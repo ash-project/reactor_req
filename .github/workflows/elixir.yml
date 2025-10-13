@@ -21,3 +21,4 @@ jobs:
       postgres: false
       igniter-upgrade: false
       sobelow: false
+      reuse: true
