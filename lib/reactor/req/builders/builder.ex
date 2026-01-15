@@ -13,7 +13,7 @@ defmodule Reactor.Req.Builder do
     arguments =
       req
       |> Map.from_struct()
-      |> Map.drop([:__identifier__, :arguments, :name, :guards])
+      |> Map.drop([:__identifier__, :__spark_metadata__, :arguments, :name, :guards])
       |> Enum.reject(&is_nil(elem(&1, 1)))
       |> Enum.map(fn
         {name, template} when is_template(template) ->

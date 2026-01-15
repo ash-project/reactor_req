@@ -125,6 +125,7 @@ defmodule Reactor.Req.Dsl.Options do
     |> Keyword.keys()
     |> Enum.map(&{&1, nil})
     |> Keyword.put(:__identifier__, nil)
+    |> Keyword.put(:__spark_metadata__, nil)
     |> Keyword.put(:arguments, [])
     |> Keyword.put(:name, nil)
     |> Keyword.put(:guards, [])
