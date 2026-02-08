@@ -68,7 +68,7 @@ defmodule Reactor.Req.MixProject do
       {:mix_audit, "~> 2.0", only: ~w[dev test]a, runtime: false},
       {:plug, "~> 1.16", only: ~w[dev test]a, runtime: false},
       {:igniter, "~> 0.6", optional: true},
-      {:reactor, "~> 0.15"},
+      {:reactor, "~> 1.0"},
       {:req, "~> 0.5"},
       {:spark, "~> 2.0"}
     ]
