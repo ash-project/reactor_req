@@ -11,6 +11,15 @@ See [Conventional Commits](Https://conventionalcommits.org) for commit guideline
 
 <!-- changelog -->
 
+## [v0.1.7](https://github.com/ash-project/reactor_req/compare/v0.1.6...v0.1.7) (2026-02-15)
+
+
+
+
+### Bug Fixes:
+
+* add `__spark_metadata__` field to DSL entities by James Harton
+
 ## [v0.1.6](https://github.com/ash-project/reactor_req/compare/v0.1.5...v0.1.6) (2025-10-07)
 
 
